@@ -49,6 +49,7 @@ namespace OdeToFood {
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         // for every HTTP message that arrives, it's the code in this config method that defines the components that respond to that request
+        // AKA: Processing Pipeline
         // Dependency Injection: Uses it here
         // "Use" methods: Order matters
         public void Configure(IApplicationBuilder app, 
