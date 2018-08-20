@@ -1,12 +1,13 @@
 ﻿@model Restaurant
 
-@{ 
-    ViewBag.Title = "Create";
+@{
+    ViewBag.Title = Model.Name;
 }
 
-<h1>Create</h1>
+<h1>Edit @Model.Name</h1>
 
-<form method="post">
+<form method="post"> @*issue a post to the handler that it came from*@
+    <input type="hidden" asp-for="Id" /> @*saving Id into this Form data*@
     <div>
         <label asp-for="Name"></label>
         <input asp-for="Name" /> @*tag helper*@
@@ -18,6 +19,7 @@
             @*tag helper and html helper*@
         </select>
         <span asp-validation-for="Cuisine"></span>
-    </div><input type="submit" name="save" value="save" />
+    </div>
+    <input type="submit" name="save" value="save" />
+    <a asp-controller="Home" asp-action="Index">Home</a>
 </form>
-@*<div asp-validation-summary=""></div> <-- Can show all    errors with the form*@

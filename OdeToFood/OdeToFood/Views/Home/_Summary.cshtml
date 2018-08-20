@@ -6,7 +6,7 @@
         Cuisine: @Model.Cuisine
     </div>
     <div class="panel-footer">
-        <a class="btn btn-default" asp-action="Details" asp-route-id="@Model.Id">More</a> @* point to the Controller action Details *@
-        <a class="btn btn-default" asp-page="/Restaurants/Edit" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-default" asp-action="Details" asp-route-id="@Model.Id">More</a> @* Points to the Controller action Details *@
+        <a class="btn btn-default" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> @* Points to the Controller action Edit *@
     </div>
 </section>

@@ -7,14 +7,14 @@ using OdeToFood.Services;
 namespace OdeToFood.Pages.Restaurants
 {
     [Authorize]
-    public class EditModel : PageModel
+    public class EditModelx : PageModel
     {
         private IRestaurantData _restaurantData;
 
         [BindProperty] // bound information that is coming from an incoming request
         public Restaurant Restaurant { get; set; }
 
-        public EditModel(IRestaurantData restaurantData) {
+        public EditModelx(IRestaurantData restaurantData) {
             _restaurantData = restaurantData;
         }
 
