@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.FileProviders;
 using System.IO;
 
-namespace Microsoft.AspNetCore.Builder { // Microsoft wants us to do ti this way if we are using IApplicationBuilder
+namespace Microsoft.AspNetCore.Builder { // Microsoft wants us to do it this way if we are using IApplicationBuilder
     public static class ApplicationBuilderExtensions {
         public static IApplicationBuilder UseNodeModules(
             this IApplicationBuilder app, string root) {
