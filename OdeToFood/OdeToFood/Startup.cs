@@ -49,7 +49,6 @@ namespace OdeToFood {
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         // for every HTTP message that arrives, it's the code in this config method that defines the components that respond to that request
-        // AKA: Processing Pipeline
         // Dependency Injection: Uses it here
         // "Use" methods: Order matters
         public void Configure(IApplicationBuilder app, 
@@ -72,7 +71,29 @@ namespace OdeToFood {
 
             app.UseAuthentication();
 
+            //app.UseMvcWithDefaultRoute();
             app.UseMvc(ConfigureRoutes);
+
+            /*// Lesson 3: Part 3
+            // ASP.NET invokes this when the framework is ready to set up the pipeline. Invoked once. Needs to return the middleware function to ASP.NET Core.
+            app.Use(next => {
+                // Middleware: Invoked once per HTTP request that reaches this middleware
+                return async context => {
+                    logger.LogInformation("Request incoming");
+
+                    if (context.Request.Path.StartsWithSegments("/mym")) {
+                        await context.Response.WriteAsync("Hit!!");
+                        logger.LogInformation("Request handled!!");
+                    } else {
+                        await next(context);
+                        logger.LogInformation("Response outgoing!!");
+                    }
+                };
+            });
+
+            app.UseWelcomePage(new WelcomePageOptions {
+                Path = "/wp"
+            });*/
         }
 
         // Convention based routing
@@ -83,7 +104,6 @@ namespace OdeToFood {
 
             routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"); // MVC framework will say, "aahh, the controller name is Home. Then lets find a 'index' action". 
                                                                                         // ? means the 'id' portion is optional. '=' means default values.
-                                                                                        // we can access any controller using this template (currently we only have Home)
         }
     }
 }
