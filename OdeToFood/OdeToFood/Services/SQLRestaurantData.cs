@@ -13,8 +13,8 @@ namespace OdeToFood.Services {
         }
 
         public Restaurant Add(Restaurant newRestaurant) {
-            _context.Restaurants.Add(newRestaurant);
-            _context.SaveChanges(); // changes dont occur until this command is called. starts May want to have this in a diff method called SaveChanges, or Commit, or something
+            _context.Restaurants.Add(newRestaurant); // A brand new entity that we need to insert.
+            _context.SaveChanges(); // Changes dont occur until this command is called. starts May want to have this in a diff method called SaveChanges, or Commit, or something
 
             return newRestaurant;
         }
@@ -28,7 +28,7 @@ namespace OdeToFood.Services {
         }
 
         public Restaurant Update(Restaurant restaurant) {
-            _context.Attach(restaurant).State = EntityState.Modified;
+            _context.Attach(restaurant).State = EntityState.Modified; // 
             _context.SaveChanges();
 
             return restaurant;

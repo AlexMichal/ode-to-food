@@ -72,29 +72,7 @@ namespace OdeToFood {
 
             app.UseAuthentication();
 
-            //app.UseMvcWithDefaultRoute();
             app.UseMvc(ConfigureRoutes);
-
-            /*// Lesson 3: Part 3
-            // ASP.NET invokes this when the framework is ready to set up the pipeline. Invoked once. Needs to return the middleware function to ASP.NET Core.
-            app.Use(next => {
-                // Middleware: Invoked once per HTTP request that reaches this middleware
-                return async context => {
-                    logger.LogInformation("Request incoming");
-
-                    if (context.Request.Path.StartsWithSegments("/mym")) {
-                        await context.Response.WriteAsync("Hit!!");
-                        logger.LogInformation("Request handled!!");
-                    } else {
-                        await next(context);
-                        logger.LogInformation("Response outgoing!!");
-                    }
-                };
-            });
-
-            app.UseWelcomePage(new WelcomePageOptions {
-                Path = "/wp"
-            });*/
         }
 
         // Convention based routing
@@ -105,6 +83,7 @@ namespace OdeToFood {
 
             routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"); // MVC framework will say, "aahh, the controller name is Home. Then lets find a 'index' action". 
                                                                                         // ? means the 'id' portion is optional. '=' means default values.
+                                                                                        // we can access any controller using this template (currently we only have Home)
         }
     }
 }
