@@ -22,30 +22,34 @@ namespace OdeToFood.Controllers {
         }
 
         /* Actions */
-        [AllowAnonymous] // overrides the outer "authorize" attribute
+
+        [AllowAnonymous] // Overrides the outer "authorize" attribute
         public IActionResult Index() { // an Action called Index
             var model = new HomeIndexViewModel();
 
             model.Restaurants = _restaurantData.GetAll();
             model.CurrentMessage = _greeter.GetMessageOfTheDay();
 
-            return View(model); // Controller will place this information into an object result (or in this case, a view) and then something else later in the pipeline will determine what to do with that result
+            return View(model); // controller will place this information into an object result (or in this case, a view) and 
+                                // then something else later in the pipeline will determine what to do with that result.
         }
 
+        // DETAILS of an existing Restaurant
         public IActionResult Details(int id) {
             var model = _restaurantData.Get(id);
 
             if (model == null) {
-                return RedirectToAction(nameof(Index)); // redirect the user to the Index action. used nameof instead of "" in case we want to refactor Index()
+                return RedirectToAction(nameof(Index)); // Redirect the user to the Index action. Used nameof instead of "" in case we want to refactor Index()
                 //return View("NotFound"); // TODO add a Not Found cshtml VIEW
             }
 
             return View(model);
         }
 
+        // CREATE a new Restaurant
         [HttpGet] // only if a GET request
         public IActionResult Create() {
-            return View(); // returns a form
+            return View(); // Looks for a view named "Create" in /views/shared or /views/home. In this case, it's a form.
         }
 
         [HttpPost] // only if a POST request
@@ -60,6 +64,30 @@ namespace OdeToFood.Controllers {
                 newRestaurant = _restaurantData.Add(newRestaurant);
 
                 return RedirectToAction(nameof(Details), new { id = newRestaurant.Id, foo = "bar" }); // foo = "bar" just to show myself how it works
+            } else {
+                return View();
+            }
+        }
+
+        // EDIT a Restaurant
+        [HttpGet]
+        public IActionResult Edit(int id) {
+            var model = _restaurantData.Get(id);
+
+            if (model == null) {
+                return RedirectToAction(nameof(Index), "Home");
+            } else {
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Restaurant model) {
+            if (ModelState.IsValid) {
+                _restaurantData.Update(model);
+
+                return RedirectToAction(nameof(Details), "Home", new { id = model.Id }); // Redirect to the Index action of the Home controller
             } else {
                 return View();
             }
