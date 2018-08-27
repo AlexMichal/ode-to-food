@@ -4,18 +4,22 @@
     ViewBag.Title = "Home page";
 }
 
-<h1>All Restaurants</h1>
-
-
-@foreach (var restaurant in Model.Restaurants) {
-    <div class="row">
-        
-            @Html.Partial("_Summary", restaurant)
-        
-    </div>
-}
-
-<div>
-    <a class="btn btn-primary" asp-action="Create">Add Restaurant</a>
+@* HERO *@
+<div class="index-hero">
+    <h1 class="index-hero-h">Where would you like to eat?</h1>
 </div>
-    
+
+@* BODY *@
+<div class="container">
+    <div class="row">
+        @foreach (var restaurant in Model.Restaurants) {
+            <div class="col-4">
+                @Html.Partial("_Summary", restaurant)
+            </div>
+        }
+    </div>
+
+    <div class="">
+        <a class="btn btn-primary" asp-action="Create">Add Restaurant</a>
+    </div>
+</div>

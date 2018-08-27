@@ -1,12 +1,17 @@
 ﻿@model Restaurant
 
-<section class="panel panel-default">
-    <h3 class="panel-heading">@Model.Name</h3>
-    <div class="panel-body">
-        Cuisine: @Model.Cuisine
+<div class="card">
+    <div class="card-body">
+        <a asp-action="Details" asp-route-id="@Model.Id">
+            <h5 class="card-title">@Model.Name</h5> @* Points to the Controller action Details *@
+        </a>
+
+        <h6 class="card-subtitle mb-2 text-muted">@Model.Cuisine cuisine</h6> 
+
+         
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> @* Points to the Controller action Edit *@
     </div>
     <div class="panel-footer">
-        <a class="btn btn-default" asp-action="Details" asp-route-id="@Model.Id">More</a> @* Points to the Controller action Details *@
-        <a class="btn btn-default" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> @* Points to the Controller action Edit *@
+        
     </div>
-</section>
+</div>

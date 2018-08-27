@@ -45,8 +45,6 @@ namespace OdeToFood {
                 options => options.UseSqlServer(_configuration.GetConnectionString("OdeToFood"))
             );
             services.AddMvc();
-
-            app.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,30 +4,32 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title> @* viewbag is a dynamic data structure *@
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/content/css/style.css" rel="stylesheet" />
+    <link href="~/content/css/style.css" rel="stylesheet" type="text/css" />
     <script src="~/node_modules/jquery/dist/jquery.js"></script>
     <script src="~/node_modules/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
 </head>
 <body>
+
     @* NAVIGATION BAR *@
     <nav class="navbar nav-default ">
         <a class="navbar-brand" href="/">
-            <img src="~/content/images/logo2-alt.png" height="30" width="30" alt="Ode to Food logo" />
-            OdeToFood
+            <img src="~/content/images/logo/logo.png" height="40" width="40" alt="Ode to Food logo" />
+            Ode To Food
         </a>
         <div class="navbar-right">
             <vc:login-logout></vc:login-logout>
         </div>
     </nav>
 
-    @* BODY *@ 
-    <div class="container">
-        @RenderBody()
-        <footer>
-            @RenderSection("footer", required: false)
-            <vc:greeter></vc:greeter>
-        </footer>
-    </div>
+   
+    @* BODY *@
+    @RenderBody()
+
+    <footer>
+        @RenderSection("footer", required: false)
+        <vc:greeter></vc:greeter>
+    </footer>
+   
 </body>
 </html>

@@ -1,3 +1,33 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
 .nav-default {
-    background-color: #f58400;
+    background-color: #fdfdfd;
+}
+
+.nav-default img {
+    margin: 5px;
+}
+
+.index-hero {
+    margin-bottom: 15px;
+    background-image: url('../images/index/fruit-opac.png');
+    background-size: cover;
+    padding-top: 130px;
+    height: 300px;
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+.index-hero-h {
+    background-color: #222;
+    color: #fff;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 7px;
+    text-align: center;
+    margin: 0 25% 0 25%;
 }
