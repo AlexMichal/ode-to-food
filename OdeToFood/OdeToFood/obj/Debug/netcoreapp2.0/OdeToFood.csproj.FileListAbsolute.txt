@@ -8,3 +8,4 @@ C:\Users\alexm\OneDrive\Web Apps\c#\OdeToFood\OdeToFood\obj\Debug\netcoreapp2.0\
 C:\Users\alexm\OneDrive\Web Apps\c#\OdeToFood\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.AssemblyInfo.cs
 C:\Users\alexm\OneDrive\Web Apps\c#\OdeToFood\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.dll
 C:\Users\alexm\OneDrive\Web Apps\c#\OdeToFood\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.pdb
+C:\Users\alexm\OneDrive\Web Apps\c#\OdeToFood\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.csprojAssemblyReference.cache

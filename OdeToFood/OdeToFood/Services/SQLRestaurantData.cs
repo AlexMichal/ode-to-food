@@ -33,5 +33,9 @@ namespace OdeToFood.Services {
 
             return restaurant;
         }
+
+        //public Restaurant GetLikes() {
+        //    return _context.Restaurants.
+        //}
     }
 }
