@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OdeToFood.Models {
     public class Restaurant { 
+        [Key]
         public int Id { get; set; }
 
         [Display(Name="Restaurant Name:")]
@@ -10,9 +12,12 @@ namespace OdeToFood.Models {
         public string Name { get; set; }
 
         [Display(Name = "Cuisine Type:")]
-        public CuisineType Cuisine { get; set; }
+        [ForeignKey("CuisineType")]
+        public int Cuisine { get; set; }
 
-        public int? Likes { get; set; }
-        public int? Dislikes { get; set; }
+        //public virtual FacilityMaster Facility { get; set; }
+
+        public int Likes { get; set; }
+        public int Dislikes { get; set; }
     }
 }

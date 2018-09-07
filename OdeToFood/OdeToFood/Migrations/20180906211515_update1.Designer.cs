@@ -11,9 +11,10 @@ using System;
 namespace OdeToFood.Migrations
 {
     [DbContext(typeof(OdeToFoodDbContext))]
-    partial class OdeToFoodDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180906211515_update1")]
+    partial class update1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +30,7 @@ namespace OdeToFood.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CuisineTypes","dbo");
+                    b.ToTable("CuisineType");
                 });
 
             modelBuilder.Entity("OdeToFood.Models.Restaurant", b =>
@@ -37,11 +38,12 @@ namespace OdeToFood.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Cuisine");
+                    b.Property<int?>("CuisineType")
+                        .IsRequired();
 
-                    b.Property<int>("Dislikes");
+                    b.Property<int?>("Dislikes");
 
-                    b.Property<int>("Likes");
+                    b.Property<int?>("Likes");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -49,7 +51,17 @@ namespace OdeToFood.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CuisineType");
+
                     b.ToTable("Restaurants");
+                });
+
+            modelBuilder.Entity("OdeToFood.Models.Restaurant", b =>
+                {
+                    b.HasOne("OdeToFood.Models.CuisineType", "Cuisine")
+                        .WithMany()
+                        .HasForeignKey("CuisineType")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

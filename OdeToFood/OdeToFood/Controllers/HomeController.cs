@@ -30,6 +30,9 @@ namespace OdeToFood.Controllers {
             model.Restaurants = _restaurantData.GetAll();
             model.CurrentMessage = _greeter.GetMessageOfTheDay();
 
+            //ViewBag.RestTypeList = _restaurantData.GetAllRestaurantNames();
+           
+
             return View(model); // controller will place this information into an object result (or in this case, a view) and 
                                 // then something else later in the pipeline will determine what to do with that result.
         }
@@ -54,12 +57,12 @@ namespace OdeToFood.Controllers {
 
         [HttpPost] // only if a POST request
         [ValidateAntiForgeryToken] // need to use this when we authorize users with cookies
-        public IActionResult Create(RestaurantEditModel model) {
+        public IActionResult Create(RestaurantEditViewModel model) {
             if (ModelState.IsValid) {
                 var newRestaurant = new Restaurant();
 
                 newRestaurant.Name = model.Name;
-                newRestaurant.Cuisine = model.Cuisine;
+                //newRestaurant.Cuisine = model.Cuisine;
 
                 newRestaurant = _restaurantData.Add(newRestaurant);
 
@@ -73,6 +76,8 @@ namespace OdeToFood.Controllers {
         [HttpGet]
         public IActionResult Edit(int id) {
             var model = _restaurantData.Get(id);
+
+            ViewBag.CuisineTypeList = _restaurantData.GetCuisineTypes();
 
             if (model == null) {
                 return RedirectToAction(nameof(Index), "Home");

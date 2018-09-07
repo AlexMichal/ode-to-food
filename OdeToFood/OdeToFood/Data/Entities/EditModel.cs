@@ -7,7 +7,7 @@ namespace OdeToFood.Models {
     public class EditModel {
         private IRestaurantData _restaurantData;
 
-        [BindProperty] // bound information that is coming from an incoming request
+        [BindProperty(Name ="None")] // bound information that is coming from an incoming request
         public Restaurant Restaurant { get; set; }
 
         public EditModel(IRestaurantData restaurantData) {

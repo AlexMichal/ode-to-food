@@ -12,15 +12,17 @@
 <body>
 
     @* NAVIGATION BAR *@
-    <nav class="navbar nav-default">
-        <a class="navbar-brand" href="/">
-            <img src="~/content/images/logo/logo.png" height="35" width="35" alt="Ode to Food logo" />
-            Ode To Food
-        </a>
-        <div class="navbar-right">
-            <vc:login-logout></vc:login-logout>
-        </div>
-    </nav>
+    <div class="container">
+        <nav class="navbar nav-default">
+            <a class="navbar-brand" href="/">
+                <img src="~/content/images/logo/logo.png" height="35" width="35" alt="Ode to Food logo" />
+                Ode To Food
+            </a>
+            <div class="navbar-right">
+                <vc:login-logout></vc:login-logout>
+            </div>
+        </nav>
+    </div>
    
     @* BODY *@
     @RenderBody()

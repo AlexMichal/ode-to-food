@@ -4,17 +4,22 @@ using Microsoft.EntityFrameworkCore;
 using OdeToFood.Data;
 using OdeToFood.Models;
 
+
+// An Entity framework
 namespace OdeToFood.Services {
     public class SQLRestaurantData : IRestaurantData {
         private OdeToFoodDbContext _context;
 
+        // Constructor
         public SQLRestaurantData(OdeToFoodDbContext context) {
             _context = context;
         }
 
+        /* Restaurant */
+
         public Restaurant Add(Restaurant newRestaurant) {
             _context.Restaurants.Add(newRestaurant); // A brand new entity that we need to insert.
-            _context.SaveChanges(); // Changes dont occur until this command is called. starts May want to have this in a diff method called SaveChanges, or Commit, or something
+            _context.SaveChanges(); // Changes dont occur until this command is called. May want to have this in a diff method called SaveChanges, or Commit, or something because we may want to batch together multiple changes on a single transaction.
 
             return newRestaurant;
         }
@@ -24,7 +29,8 @@ namespace OdeToFood.Services {
         }
 
         public IEnumerable<Restaurant> GetAll() {
-           return  _context.Restaurants.OrderBy(r => r.Name);
+            // IEnum not good when quering a large table (10,000+). Instead, use IQueryable
+            return  _context.Restaurants.OrderBy(r => r.Name);
         }
 
         public Restaurant Update(Restaurant restaurant) {
@@ -34,8 +40,10 @@ namespace OdeToFood.Services {
             return restaurant;
         }
 
-        //public Restaurant GetLikes() {
-        //    return _context.Restaurants.
-        //}
+        /* Cuisine */
+
+        public IEnumerable<CuisineType> GetCuisineTypes() {
+            return _context.CuisineTypes.ToList();
+        }
     }
 }

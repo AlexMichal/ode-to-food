@@ -14,9 +14,9 @@
     </div>
     <div>
         <label asp-for="Cuisine"></label>
-        <select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()">
+        @*<select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()">
             @*tag helper and html helper*@
-        </select>
+        </select>*@
         <span asp-validation-for="Cuisine"></span>
     </div><input type="submit" name="save" value="save" />
 </form>

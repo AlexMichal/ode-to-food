@@ -24,7 +24,6 @@ body, html {
     background-size: cover;
     padding-top: 130px;
     height: 300px;
-    background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
 }
@@ -49,8 +48,17 @@ body, html {
 }
 
     .rest-card-like-icon:hover {
-        background-color: #e9e9e9;
-        border-radius: 5px;
+        background-color: #a9e2ff;
+        border-radius: 10px;
+    }
+
+.rest-card-dislike-icon {
+    margin: -5px 2px 0 2px;
+}
+
+    .rest-card-dislike-icon:hover {
+        background-color: #feb1b1;
+        border-radius: 10px;
     }
 
 

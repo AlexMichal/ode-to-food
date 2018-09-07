@@ -5,35 +5,33 @@ using System.Collections.Generic;
 
 namespace OdeToFood.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class update7 : Migration
     {
-        // Uploading model changes in DB
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // migrationBuilder: How to add to this table
+            migrationBuilder.EnsureSchema(
+                name: "dbo");
+
             migrationBuilder.CreateTable(
-                name: "Restaurants",
+                name: "CuisineTypes",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Cuisine = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 80, nullable: false)
+                    Type = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Restaurants", x => x.Id);
+                    table.PrimaryKey("PK_CuisineTypes", x => x.Id);
                 });
         }
 
-        // Downgrade
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Restaurants");
-
-            migrationBuilder.DropTable(
-                name: "CuisineTypes");
+                name: "CuisineTypes",
+                schema: "dbo");
         }
     }
 }

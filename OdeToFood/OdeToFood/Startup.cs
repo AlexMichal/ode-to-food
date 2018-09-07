@@ -42,7 +42,7 @@ namespace OdeToFood {
             //services.AddSingleton<IRestaurantData, InMemoryRestaurantData>(); // any component that needs IRestaurantData, we create an instance for each HTTP request, and then throw it away after we're done. create another one when we need to use it again.
             services.AddScoped<IRestaurantData, SQLRestaurantData>();
             services.AddDbContext<OdeToFoodDbContext>(
-                options => options.UseSqlServer(_configuration.GetConnectionString("OdeToFood"))
+                options => options.UseSqlServer(_configuration.GetConnectionString("OdeToFood")) // From appsettings.json
             );
             services.AddMvc();
         }

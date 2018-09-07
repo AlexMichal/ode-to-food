@@ -1,0 +1,5 @@
+﻿In Packagae Manager Console:
+
+Command = "add-migration update" when we update our Entities
+
+Then: "update-database -v"

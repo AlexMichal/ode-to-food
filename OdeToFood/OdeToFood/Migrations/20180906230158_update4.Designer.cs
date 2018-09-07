@@ -11,9 +11,10 @@ using System;
 namespace OdeToFood.Migrations
 {
     [DbContext(typeof(OdeToFoodDbContext))]
-    partial class OdeToFoodDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180906230158_update4")]
+    partial class update4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +38,7 @@ namespace OdeToFood.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Cuisine");
+                    b.Property<int>("CuisineIdId");
 
                     b.Property<int>("Dislikes");
 
@@ -49,7 +50,17 @@ namespace OdeToFood.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CuisineIdId");
+
                     b.ToTable("Restaurants");
+                });
+
+            modelBuilder.Entity("OdeToFood.Models.Restaurant", b =>
+                {
+                    b.HasOne("OdeToFood.Models.CuisineType", "CuisineId")
+                        .WithMany()
+                        .HasForeignKey("CuisineIdId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

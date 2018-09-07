@@ -15,11 +15,13 @@
     </div>
     <div>
         <label asp-for="Cuisine"></label>
-        <select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()">
+        @*<select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()">*@
+        <select asp-for="Cuisine" 
+                asp-items="@(new SelectList(ViewBag.CuisineTypeList, "Id", "Type"))" class="form-control">
             @*tag helper and html helper*@
         </select>
         <span asp-validation-for="Cuisine"></span>
-    </div>
+</div>
     <input type="submit" name="save" value="save" />
     <a asp-controller="Home" asp-action="Index">Home</a>
 </form>
