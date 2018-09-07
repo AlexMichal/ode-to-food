@@ -42,7 +42,11 @@ namespace OdeToFood.Services {
 
         /* Cuisine */
 
-        public IEnumerable<CuisineType> GetCuisineTypes() {
+        public CuisineType GetCuisineType(int id) {
+            return _context.CuisineTypes.FirstOrDefault(c => c.Id == id);
+        }
+
+        public IEnumerable<CuisineType> GetAllCuisineTypes() {
             return _context.CuisineTypes.ToList();
         }
     }

@@ -7,6 +7,8 @@ namespace OdeToFood.Services {
         Restaurant Get(int id);
         Restaurant Add(Restaurant newRestaurant);
         Restaurant Update(Restaurant resturant);
+
+        CuisineType GetCuisineType(int id);
         IEnumerable<CuisineType> GetCuisineTypes();
     }
 }
