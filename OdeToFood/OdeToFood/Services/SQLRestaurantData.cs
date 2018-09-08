@@ -25,12 +25,12 @@ namespace OdeToFood.Services {
         }
 
         public Restaurant Get(int id) {
-            return _context.Restaurants.FirstOrDefault(r => r.Id == id);
+            return _context.Restaurants.Include(c => c.CuisineType).FirstOrDefault(r => r.RestaurantId == id); // Includes Cuisine type. Need this for using Foreign Key to CuisineType table.
         }
 
         public IEnumerable<Restaurant> GetAll() {
             // IEnum not good when quering a large table (10,000+). Instead, use IQueryable
-            return  _context.Restaurants.OrderBy(r => r.Name);
+            return  _context.Restaurants.Include(c => c.CuisineType).OrderBy(r => r.Name);
         }
 
         public Restaurant Update(Restaurant restaurant) {
@@ -43,7 +43,7 @@ namespace OdeToFood.Services {
         /* Cuisine */
 
         public CuisineType GetCuisineType(int id) {
-            return _context.CuisineTypes.FirstOrDefault(c => c.Id == id);
+            return _context.CuisineTypes.FirstOrDefault(c => c.CuisineTypeId == id);
         }
 
         public IEnumerable<CuisineType> GetAllCuisineTypes() {

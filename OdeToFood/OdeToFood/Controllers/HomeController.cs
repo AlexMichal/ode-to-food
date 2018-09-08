@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 // The HomeController receives a request to the root of the application. This will then be instantiated.
 namespace OdeToFood.Controllers {
-    [Authorize] // ensure the user is authenticated (at controller level: user must be authenticated to use ANY action)
+    [Authorize] // Ensure the user is authenticated (at controller level: user must be authenticated to use ANY action)
     public class HomeController : Controller {
         private IRestaurantData _restaurantData;
         private IGreeter _greeter;
@@ -23,17 +23,16 @@ namespace OdeToFood.Controllers {
 
         /* Actions */
 
+        // INDEX
         [AllowAnonymous] // Overrides the outer "authorize" attribute
         public IActionResult Index() { // an Action called Index
             var model = new HomeIndexViewModel();
 
             model.Restaurants = _restaurantData.GetAll();
-            model.CurrentMessage = _greeter.GetMessageOfTheDay();
 
-            //ViewBag.RestTypeList = _restaurantData.GetAllRestaurantNames();
-           
+            //model.CurrentMessage = _greeter.GetMessageOfTheDay(); TODO Remove. Just showing how this works
 
-            return View(model); // controller will place this information into an object result (or in this case, a view) and 
+            return View(model); // Controller will place this information into an object result (or in this case, a view) and 
                                 // then something else later in the pipeline will determine what to do with that result.
         }
 
@@ -52,6 +51,8 @@ namespace OdeToFood.Controllers {
         // CREATE a new Restaurant
         [HttpGet] // only if a GET request
         public IActionResult Create() {
+            ViewBag.CuisineTypeList = _restaurantData.GetAllCuisineTypes();
+
             return View(); // Looks for a view named "Create" in /views/shared or /views/home. In this case, it's a form.
         }
 
@@ -66,7 +67,7 @@ namespace OdeToFood.Controllers {
 
                 newRestaurant = _restaurantData.Add(newRestaurant);
 
-                return RedirectToAction(nameof(Details), new { id = newRestaurant.Id, foo = "bar" }); // foo = "bar" just to show myself how it works
+                return RedirectToAction(nameof(Details), new { id = newRestaurant.RestaurantId, foo = "bar" }); // Can also do foo = "bar" in URL. This is just to show myself how it works
             } else {
                 return View();
             }
@@ -77,7 +78,7 @@ namespace OdeToFood.Controllers {
         public IActionResult Edit(int id) {
             var model = _restaurantData.Get(id);
 
-            ViewBag.CuisineTypeList = _restaurantData.GetCuisineTypes();
+            ViewBag.CuisineTypeList = _restaurantData.GetAllCuisineTypes();
 
             if (model == null) {
                 return RedirectToAction(nameof(Index), "Home");
@@ -92,7 +93,7 @@ namespace OdeToFood.Controllers {
             if (ModelState.IsValid) {
                 _restaurantData.Update(model);
 
-                return RedirectToAction(nameof(Details), "Home", new { id = model.Id }); // Redirect to the Index action of the Home controller
+                return RedirectToAction(nameof(Details), "Home", new { id = model.RestaurantId }); // Redirect to the Index action of the Home controller
             } else {
                 return View();
             }

@@ -7,20 +7,20 @@
 <h1>Edit @Model.Name</h1>
 
 <form method="post"> @*issue a post to the handler that it came from*@
-    <input type="hidden" asp-for="Id" /> @*saving Id into this Form data*@
+    <input type="hidden" asp-for="RestaurantId" /> @*saving Id into this Form data*@
     <div>
         <label asp-for="Name"></label>
         <input asp-for="Name" /> @*tag helper*@
         <span asp-validation-for="Name"></span>
     </div>
     <div>
-        <label asp-for="Cuisine"></label>
+        <label asp-for="CuisineTypeId"></label>
         @*<select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()">*@
-        <select asp-for="Cuisine" 
-                asp-items="@(new SelectList(ViewBag.CuisineTypeList, "Id", "Type"))" class="form-control">
+        <select asp-for="CuisineTypeId" 
+                asp-items="@(new SelectList(ViewBag.CuisineTypeList, "CuisineTypeId", "Type"))" class="form-control">
             @*tag helper and html helper*@
         </select>
-        <span asp-validation-for="Cuisine"></span>
+        <span asp-validation-for="CuisineTypeId"></span>
 </div>
     <input type="submit" name="save" value="save" />
     <a asp-controller="Home" asp-action="Index">Home</a>

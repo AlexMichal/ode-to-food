@@ -11,9 +11,10 @@ using System;
 namespace OdeToFood.Migrations
 {
     [DbContext(typeof(OdeToFoodDbContext))]
-    partial class OdeToFoodDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180908012129_update13")]
+    partial class update13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,19 +23,19 @@ namespace OdeToFood.Migrations
 
             modelBuilder.Entity("OdeToFood.Models.CuisineType", b =>
                 {
-                    b.Property<int>("CuisineTypeId")
+                    b.Property<int>("CuisineId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Type");
 
-                    b.HasKey("CuisineTypeId");
+                    b.HasKey("CuisineId");
 
                     b.ToTable("CuisineTypes","dbo");
                 });
 
             modelBuilder.Entity("OdeToFood.Models.Restaurant", b =>
                 {
-                    b.Property<int>("RestaurantId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CuisineTypeId");
@@ -47,7 +48,7 @@ namespace OdeToFood.Migrations
                         .IsRequired()
                         .HasMaxLength(80);
 
-                    b.HasKey("RestaurantId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CuisineTypeId");
 

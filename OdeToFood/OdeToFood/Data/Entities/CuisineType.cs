@@ -5,7 +5,7 @@ namespace OdeToFood.Models {
     [Table("CuisineTypes", Schema = "dbo")]
     public class CuisineType {
         [Key]
-        public int Id { get; set; }
+        public int CuisineTypeId { get; set; }
 
         public string Type { get; set; }
     }

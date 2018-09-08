@@ -1,18 +1,21 @@
 ﻿@model Restaurant
 
 <div class="card h-100">
+    @* BODY *@
     <div class="card-body">
         @* Name of the restaurant *@
-        <a asp-action="Details" asp-route-id="@Model.Id">
+        <a asp-action="Details" asp-route-id="@Model.RestaurantId">
             <h5 class="card-title">@Model.Name</h5> @* Points to the Controller action Details *@
         </a>
 
         @* Type of Cuisine *@
-        <h6 class="card-subtitle mb-2 text-muted">@Model.Cuisine cuisine</h6> 
-         
+        <h6 class="card-subtitle mb-2 text-muted">@Model.CuisineType.Type cuisine</h6>
+
         @* Button to Edit the restaurant *@
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> @* Points to the Controller action Edit *@
+        <a asp-action="Edit" asp-route-id="@Model.RestaurantId">Edit</a> @* Points to the Controller action Edit *@
     </div>
+
+    @* FOOTER *@
     <div class="card-footer">
         @{
             var iconSize = "23px";
@@ -25,7 +28,7 @@
             <a href="#">
                 <img class="rest-card-dislike-icon" src="~/content/images/icons/dislike.png" height=@iconSize width=@iconSize alt="Dislike" />
             </a>
-            @Model.Likes
+            @Model.Dislikes
         }
     </div>
 </div>

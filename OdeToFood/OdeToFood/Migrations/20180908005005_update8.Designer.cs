@@ -11,9 +11,10 @@ using System;
 namespace OdeToFood.Migrations
 {
     [DbContext(typeof(OdeToFoodDbContext))]
-    partial class OdeToFoodDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180908005005_update8")]
+    partial class update8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,22 +23,22 @@ namespace OdeToFood.Migrations
 
             modelBuilder.Entity("OdeToFood.Models.CuisineType", b =>
                 {
-                    b.Property<int>("CuisineTypeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Type");
 
-                    b.HasKey("CuisineTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("CuisineTypes","dbo");
                 });
 
             modelBuilder.Entity("OdeToFood.Models.Restaurant", b =>
                 {
-                    b.Property<int>("RestaurantId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CuisineTypeId");
+                    b.Property<int>("Cuisine");
 
                     b.Property<int>("Dislikes");
 
@@ -47,9 +48,9 @@ namespace OdeToFood.Migrations
                         .IsRequired()
                         .HasMaxLength(80);
 
-                    b.HasKey("RestaurantId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CuisineTypeId");
+                    b.HasIndex("Cuisine");
 
                     b.ToTable("Restaurants");
                 });
@@ -58,7 +59,7 @@ namespace OdeToFood.Migrations
                 {
                     b.HasOne("OdeToFood.Models.CuisineType", "CuisineType")
                         .WithMany()
-                        .HasForeignKey("CuisineTypeId")
+                        .HasForeignKey("Cuisine")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
