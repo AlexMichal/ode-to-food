@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using OdeToFood.Data;
 using OdeToFood.Models;
 
-
 // An Entity framework
 namespace OdeToFood.Services {
     public class SQLRestaurantData : IRestaurantData {
@@ -30,7 +29,7 @@ namespace OdeToFood.Services {
 
         public IEnumerable<Restaurant> GetAll() {
             // IEnum not good when quering a large table (10,000+). Instead, use IQueryable
-            return  _context.Restaurants.Include(c => c.CuisineType).OrderBy(r => r.Name);
+            return  _context.Restaurants.Include(c => c.CuisineType).OrderBy(r => r.Name); // Will not get Restaurants with Cuisine Type set to 0.
         }
 
         public Restaurant Update(Restaurant restaurant) {

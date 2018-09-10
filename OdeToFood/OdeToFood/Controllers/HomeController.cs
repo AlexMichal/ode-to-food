@@ -63,10 +63,11 @@ namespace OdeToFood.Controllers {
                 var newRestaurant = new Restaurant();
 
                 newRestaurant.Name = model.Name;
-                //newRestaurant.Cuisine = model.Cuisine;
+                newRestaurant.CuisineTypeId = model.CuisineTypeId; // TODO
 
                 newRestaurant = _restaurantData.Add(newRestaurant);
 
+                // Redirect to the newly created restaurant
                 return RedirectToAction(nameof(Details), new { id = newRestaurant.RestaurantId, foo = "bar" }); // Can also do foo = "bar" in URL. This is just to show myself how it works
             } else {
                 return View();

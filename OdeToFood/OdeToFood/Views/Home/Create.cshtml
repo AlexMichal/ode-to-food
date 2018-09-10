@@ -13,8 +13,8 @@
         <span asp-validation-for="Name"></span>
     </div>
     <div>
-        <label asp-for="CuisineType"></label>
-        <select asp-for="CuisineType" asp-items="@(new SelectList(ViewBag.CuisineTypeList, "CuisineTypeId", "Type"))">
+        <label asp-for="CuisineTypeId"></label>
+        <select asp-for="CuisineTypeId" asp-items="@(new SelectList(ViewBag.CuisineTypeList, "CuisineTypeId", "Type"))" class="form-control">
             @*tag helper and html helper*@
         </select>
         <span asp-validation-for="CuisineType"></span>

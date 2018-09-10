@@ -6,6 +6,8 @@ namespace OdeToFood.ViewModels {
     public class RestaurantEditViewModel { 
         [Required, MaxLength(80)]
         public string Name { get; set; }
-        public IEnumerable<CuisineType> Cuisine { get; set; }
+
+        public int CuisineTypeId { get; set; }
+        public virtual CuisineType CuisineType { get; set; } // Reference property
     }
 }
